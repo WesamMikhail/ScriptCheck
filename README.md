@@ -1,4 +1,4 @@
-# Script-Check
+# ScriptCheck
 
 ### The Problem:
 
