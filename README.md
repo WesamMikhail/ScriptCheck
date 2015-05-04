@@ -2,7 +2,7 @@
 
 ### The Problem:
 
-Working with CRON-jobs can be a bitch sometimes. Having to ensure that your scheduled job did its thing without any errors can be a real hassle.
+Working with CRON-jobs can be a pain sometimes. Having to ensure that your scheduled job did its thing without any errors can be a real hassle.
 
 A real world example:
 Imagine having a scheduled script that grabs some data from a 3rd party API or some RSS feed. If your script fails to parse
