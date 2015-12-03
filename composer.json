@@ -1,12 +1,12 @@
 {
-    "name" : "Lorenum/Script-Check",
+    "name" : "lorenum/scriptcheck",
     "description" : "Observer pattern for PHP Errors and Exceptions",
     "license" : "MIT",
-    "authros" : [
+    "authors" : [
         {
             "name" : "Wesam Mikhail",
             "email" : "wesam@lorenum.com",
-            "homepage" : "lorenum.com/wesam"
+            "homepage" : "http://lorenum.com/wesam"
         }
     ],
     "autoload" : {
