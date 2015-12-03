@@ -19,7 +19,8 @@ use Lorenum\ScriptCheck\ScriptCheck;
 use Lorenum\ScriptCheck\Handlers\FileLoggerHandler;
 
 $sc = new ScriptCheck();
-$sc->addHandler(new FileLoggerHandler(getcwd() . "/test.log"));
+$sc->addHandler(new FileLoggerHandler(getcwd() . "/test.log")); #the error will be logged into a file
+$sc->addHandler(new EmailHandler("myemail@server.com", "Your cron task had a problem")); #the error will also be emailed to you
 $sc->register();
 
 
@@ -47,8 +48,10 @@ and then run **composer install** or **composer update**.
 ##### FileLoggerHandler:
 Logs Errors/Exceptions into the filename specified in the constructor
 
+**Note:** Apache sometimes switches the cwd if a fatal error occurs. For that reason, make sure to specify the full file path.
+
 ```
-$sc->addHandler(new FileLoggerHandler("test.log"));
+$sc->addHandler(new FileLoggerHandler(getcwd() . "/test.log"));
 ```
 
 ##### SQLDBHandler:
