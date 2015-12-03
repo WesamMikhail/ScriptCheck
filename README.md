@@ -1,7 +1,5 @@
 # ScriptCheck
 
-## The Problem:
-
 Working with CRON-jobs can be a pain sometimes. Having to ensure that your scheduled job did its thing without any errors can be a real hassle.
 
 A real world example:
@@ -36,22 +34,26 @@ Add the code above **at the top** of your CRON job and it will automatically log
 Before you can run the code above you have to require the library via composer by using
 
 ```
-    "require": {
-        "lorenum/scriptcheck": "0.1"
-    }
+"require": {
+    "lorenum/scriptcheck": "0.1"
+}
 ```
+
+and then run **composer install** or **composer update**.
 
 ## Handlers
 
-The package comes with 4 different handlers. FileLoggerHandler, SQLDBHandler, EmailHandler, APICallHandler.
 
-##### FileLoggerHandler: Logs Errors/Exceptions into the filename specified in the constructor
+##### FileLoggerHandler:
+Logs Errors/Exceptions into the filename specified in the constructor
 
 ```
 $sc->addHandler(new FileLoggerHandler("test.log"));
 ```
 
-##### SQLDBHandler: Logs Errors/Exceptions into a SQL DB.
+##### SQLDBHandler:
+Logs Errors/Exceptions into a SQL DB.
+
 ```
 $sc->addHandler(new SQLDBHandler('mysql:host=localhost;dbname=application', "root", "")); //Default table name is 'logs'
 ```
@@ -66,12 +68,15 @@ $sc->addHandler($h);
 
 You can see the table schema in the SQLDBHandler file. Alternatively you could extend it and make your own handler.
 
-##### EmailHandler: Logs Errors/Exceptions by sending you an email
+##### EmailHandler:
+Logs Errors/Exceptions by sending you an email
+
 ```
 $sc->addHandler(new EmailHandler("MYEMAIL@SOMEEMAILPROVIDER.COM", "Email subject is optional"));
 ```
 
-##### APICallHandler: Logs Errors/Exceptions by calling an external API. Supports **GET** or **POST**
+##### APICallHandler:
+Logs Errors/Exceptions by calling an external API. Supports **GET** or **POST**
 
 ```
 $sc->addHandler(new APICallHandler("http://ENDPOINT.COM/YOURURI", APICallHandler::METHOD_GET));
