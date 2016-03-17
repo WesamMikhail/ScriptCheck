@@ -33,27 +33,29 @@ class ScriptCheck{
     }
 
     public function register(){
-        set_error_handler(function($errno, $errstr, $errfile, $errline){
+        $instance = $this;
+
+        set_error_handler(function($errno, $errstr, $errfile, $errline) use ($instance){
             $error = new Error();
             $error->setAll($errno, $errstr, $errfile, $errline, date('Y-m-d H:i:s'));
 
-            $this->notifyAllHandlers($error);
+            $instance->notifyAllHandlers($error);
         });
 
-        set_exception_handler(function(Exception $e){
+        set_exception_handler(function(Exception $e) use ($instance){
             $error = new Error();
             $error->setAll($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine(), date('Y-m-d H:i:s'));
 
-            $this->notifyAllHandlers($error);
+            $instance->notifyAllHandlers($error);
         });
 
-        register_shutdown_function(function(){
+        register_shutdown_function(function() use ($instance){
             $errorInfo = error_get_last();
 
             if($errorInfo !== null) {
                 $error = new Error();
                 $error->setAll($errorInfo["type"], $errorInfo["message"], $errorInfo["file"], $errorInfo["line"], date('Y-m-d H:i:s'));
-                $this->notifyAllHandlers($error);
+                $instance->notifyAllHandlers($error);
             }
         });
     }

@@ -94,7 +94,7 @@ class Error{
     }
 
     public function toQueryString(){
-        return http_build_query(["errno" => $this->getErrorNo(), "error" => $this->getError(), "file" => $this->getFile(), "line" => $this->getFileLine(), "time" => $this->getTime()]);
+        return http_build_query(array("errno" => $this->getErrorNo(), "error" => $this->getError(), "file" => $this->getFile(), "line" => $this->getFileLine(), "time" => $this->getTime()));
     }
 
     public function toString(){
